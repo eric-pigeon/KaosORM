@@ -22,10 +22,7 @@ $.Event.prototype.relativeMousePosition = function() {
 
 var Line = function( origin ) {
 	this.endPoints.origin = origin;
-	this.element = $('<div>').attr({
-		class : 'line',
-		id		: 'drawingLine'
-	}).css(
+	this.element = $('<div>').attr('class', 'line').css(
 		origin._getElementOrigin()
 	).appendTo( origin.drawableArea );
 };
@@ -97,7 +94,6 @@ $.widget('kaosORM.connectable', $.ui.mouse, {
 		$('.connectableDrawing').unbind('.connectableDrawing').removeClass('connectableDrawing');
 	},
 	_mouseDown : function(e) {
-		var self = this;
 		if (!e.altKey && !e.metaKey)
 			return;
 		e.stopImmediatePropagation();
@@ -105,8 +101,6 @@ $.widget('kaosORM.connectable', $.ui.mouse, {
 			this._stopNewConnection();
 		} else {
 			this._startConnection();
-			// TODO fix this and move it to startConnection
-			this._tempBind( $('body'), 'connectableDrawing', 'keyDown', self._cancelConnection );
 		}
 	},
 	_getElementOrigin : function() {
@@ -131,6 +125,7 @@ $.widget('kaosORM.connectable', $.ui.mouse, {
 		return origin;
 	},
 	_startConnection : function() {
+		var self = this;
 		connectionStarted = true;
 		line = new Line( this );
 		// TODO this shouldn't be added to the lines until the connection is complete
@@ -138,6 +133,10 @@ $.widget('kaosORM.connectable', $.ui.mouse, {
 		// make the drawAble area interactive
 		this._tempBind( this.drawableArea, 'connectableDrawing', 'mousemove', function(e) {
 			line.drawTo( e.relativeMousePosition() );
+		});
+		// allow escape to cancel a drawing
+		this._tempBind( $(document), 'connectableDrawing', 'keydown', function(e) {
+			self._cancelConnection(e);
 		});
 		// make other connectables 'snap'
 		this._tempBind( $('.connectable'), 'connectableDrawing', 'mousemove', function(e) {
@@ -171,7 +170,7 @@ $.widget('kaosORM.connectable', $.ui.mouse, {
 	_cancelConnection : function(e) {
 		if (e.keyCode == 27) {
 			this._removeDrawingBindings();
-			$('#drawingLine').remove();
+			line.element.remove();
 		}
 	},
 	/*------------------------------------------
