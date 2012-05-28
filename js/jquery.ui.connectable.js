@@ -21,14 +21,14 @@ $.Event.prototype.relativeMousePosition = function() {
 |--------------------------------------*/
 
 var Line = function( origin ) {
+	this.endPoints = {};
 	this.endPoints.origin = origin;
 	this.element = $('<div>').attr('class', 'line').css(
 		origin._getElementOrigin()
-	).appendTo( origin.drawableArea );
+	).appendTo( origin.drawableArea ).data('line', this);
 };
 
 Line.prototype = {
-	endPoints : {},
 	drawTo : function(p) {
 		var lineOrigin = {left : parseFloat(this.element.css('left')), top : parseFloat(this.element.css('top')) };
 		var deltaX = p.left-lineOrigin.left;
@@ -146,7 +146,6 @@ $.widget('kaosORM.connectable', $.ui.mouse, {
 	},
 	_stopNewConnection : function() {
 		connectionStarted = false;
-		line.element.removeAttr('id');
 		this._removeDrawingBindings();
 		// and the line to both connectables line array
 		this.lines.push( line );
