@@ -71,10 +71,23 @@ ul {
 	padding: 2px;
 }
 
+.lineContainer {
+	position: absolute;
+	height: 5px;
+	margin-top: -2px;
+}
+
+.lineContainer:hover {
+	background-color: rgb(51, 255, 102);
+	background-color: rgba(51, 255, 102, 80);
+}
+
 .line {
 	background-color: #000;
 	height: 1px;
-	position: absolute;
+	margin-top: 2px;
+	width: 100%;
+	/*position: absolute;*/
 }
 
 .editableInput {

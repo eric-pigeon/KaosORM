@@ -1,3 +1,5 @@
+// TODO. dont let linecontainer hover until drawing complete otherwise it can hover while drawing
+
 (function( $ ) {
 
 // extend the jQuery eventObject to have relativeMousePosition
@@ -23,9 +25,16 @@ $.Event.prototype.relativeMousePosition = function() {
 var Line = function( origin ) {
 	this.endPoints = {};
 	this.endPoints.origin = origin;
+	this.element = $('<div>').addClass('lineContainer').css(
+			origin._getElementOrigin()
+	).appendTo( origin.drawableArea ).data('line', this).append(
+		$('<div>').addClass('line')
+	);
+	/*
 	this.element = $('<div>').attr('class', 'line').css(
 		origin._getElementOrigin()
 	).appendTo( origin.drawableArea ).data('line', this);
+	*/
 };
 
 Line.prototype = {
