@@ -30,11 +30,6 @@ var Line = function( origin ) {
 	).appendTo( origin.drawableArea ).data('line', this).append(
 		$('<div>').addClass('line')
 	);
-	/*
-	this.element = $('<div>').attr('class', 'line').css(
-		origin._getElementOrigin()
-	).appendTo( origin.drawableArea ).data('line', this);
-	*/
 };
 
 Line.prototype = {
@@ -159,7 +154,7 @@ $.widget('kaosORM.connectable', $.ui.mouse, {
 		// and the line to both connectables line array
 		this.lines.push( line );
 		// and this to the line endpoints
-		line.endPoints.end =  this;
+		line.endPoints.end = this;
 		// if this is drug we need to update the line
 		$(this.element).add(line.endPoints.origin.element).bind('dragstart', function(e) {
 			var self = $(this).data('connectable');
@@ -174,6 +169,8 @@ $.widget('kaosORM.connectable', $.ui.mouse, {
 				self.lines[i].drawTo(self._getElementOrigin());
 			}	
 		});
+		this._trigger('newconnection', null, this);
+		line.endPoints.origin._trigger('newconnection', null, this);
 	},
 	_cancelConnection : function(e) {
 		if (e.keyCode == 27) {
