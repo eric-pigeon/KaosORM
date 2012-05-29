@@ -72,6 +72,12 @@ ul {
 	padding: 2px;
 }
 
+.attributes > ul, .relationships > ul {
+	list-style-type: none;
+	padding: 2px;
+	margin-left: 10px;
+}
+
 .lineContainer {
 	position: absolute;
 	height: 5px;
