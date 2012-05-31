@@ -102,3 +102,32 @@ ul {
 	border: 1px solid black;
 	padding: 0;
 }
+
+.ui-corner-all {
+	border-radius: 4px;
+}
+
+.ui-dialog-titlebar {
+	position: relative;
+	background-color: #E9E9E9;
+	padding: .4em 1em;
+}
+
+.ui-dialog-titlebar-close {
+	position: absolute;
+	right: .3em;
+	top: 50%;
+}
+
+.ui-widget-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #000;
+	opacity: 0;
+}
+
+.ui-widget-overlay-fade-in {
+	-webkit-transition: opacity 0.5s ease-in;
+	opacity: 0.8;
+}
