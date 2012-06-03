@@ -104,7 +104,7 @@ ul {
 }
 
 .ui-corner-all {
-	border-radius: 4px;
+	border-radius: 6px;
 }
 
 .ui-dialog-titlebar {
@@ -130,4 +130,43 @@ ul {
 .ui-widget-overlay-fade-in {
 	-webkit-transition: opacity 0.5s ease-in;
 	opacity: 0.8;
+}
+
+.ui-dialog {
+	background-color: #D8D8D8;
+}
+
+.ui-dialog .ui-dialog-content {
+	padding: 0.5em 1em;
+}
+
+.button {
+	border-radius: 6px;
+	padding: .1em .5em;
+	background: #C0C0C0;
+	margin: 0em .4em;
+}
+
+.buttonWrap {
+	position: absolute;
+	bottom: .5em;
+	right: .5em;
+}
+
+@-webkit-keyframes defaultAction {
+	0%, 100% {
+		background: #07A3CB;
+	}
+	50% {
+		background: #2949AA;
+	}
+}
+
+#defaultAction {
+	background: #07A3CB;
+	-webkit-animation: defaultAction 1.2s infinite;
+}
+
+.fileProgress {
+	width: 100%;
 }
