@@ -1,0 +1,35 @@
+.lineContainer {
+	position: absolute;
+	height: 5px;
+	margin-top: -2px;
+}
+
+.line {
+	background-color: #000;
+	height: 1.5px;
+	margin-bottom: 11px;
+	width: 50%;
+	display: inline-block;
+}
+
+.connection.relation-one .line:last-child::after {
+	content: "";
+	position: absolute;
+	right: -10px;
+	border: 8px solid transparent;
+	border-width: 10px 10px;
+	border-left-color: #000000;
+	margin-top: -10px;
+	background: transparent;
+}
+
+/*
+.line.relation-one-first {
+	left: -10px;
+}
+
+.line.relation-one-last {
+	right: -10px;
+}
+*/
+
