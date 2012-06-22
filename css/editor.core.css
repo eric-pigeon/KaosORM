@@ -1,0 +1,71 @@
+header h1 {
+	text-align: center;
+	margin: 0.3em;
+}
+
+ul {
+	margin: 0;
+}
+
+button { 
+	padding: 0.5em;
+	border-radius: 5px;
+	text-align: center;
+	border: 1px solid darkGrey;
+	background: #E9E9E9;
+	font-weight: bold;
+}
+
+button:active {
+	background: #D8D8D8;
+}
+
+.mainContent, footer {
+	margin: 10px;
+}
+
+.flex-box {
+	display: box;
+	display: -moz-box;
+	display: -webkit-box;
+}
+
+.modelArea, .sideBar {
+	overflow: scroll;
+}
+
+.modelArea, .sideBar, footer {
+	background-color: #D9D9D9;
+	position: relative;
+	border-radius: 10px;
+}
+
+.modelArea {
+	min-width: 600px;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+	height: 450px;
+	box-orient: vertical;
+	-moz-box-orient: vertical;
+	-webkit-box-orient: vertical;
+	box-flex: 1;
+	-moz-box-flex: 1;
+	-webkit-box-flex: 1;
+}
+
+footer {
+	padding: 10px;
+}
+
+.sideBarSepperator {
+	width: 15px;
+	cursor: ew-resize;
+}
+
+.sideBar {
+	width: 300px;
+	min-width: 300px;
+	max-width: 500px;
+}
