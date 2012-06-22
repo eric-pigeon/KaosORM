@@ -1,0 +1,13 @@
+@-webkit-keyframes defaultAction {
+	0%, 100% {
+		background: #07A3CB;
+	}
+	50% {
+		background: #2949AA;
+	}
+}
+
+#defaultAction {
+	background: #07A3CB;
+	-webkit-animation: defaultAction 1.2s infinite;
+}
