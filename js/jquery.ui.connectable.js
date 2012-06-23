@@ -29,6 +29,8 @@ var Line = function( origin ) {
 			origin._getElementOrigin()
 	).appendTo( origin.drawableArea ).data('line', this).append(
 		$('<div>').addClass('line')
+	).append(
+		$('<div>').addClass('line')
 	);
 };
 
