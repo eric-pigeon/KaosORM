@@ -2,6 +2,8 @@
 
 var Entity;
 KaosORM.Entity = Entity = function() {
+	this.attributes = { };
+	this.relationships = { };
 	this._createHTML();
 	return this;
 }
@@ -32,11 +34,38 @@ Entity.prototype = {
 		this.element.data('entity', this);
 	},
 	newRelationship : function() {
-		this.element.find('.relationships > ul').append( $('<li>').html('New Relationship').editable() );
+		// todo recalculate height and width
+		var i = 0;
+		var relationshipName = "New Relationship";
+		while(1) {
+			if (this.relationships[relationshipName] === undefined) {
+				break;
+			}
+			i++;
+		relationshipName = "New Relationship"+i;
+		}
+		this.relationships[relationshipName] = new Relationship( this, relationshipName );
+		this.element.find('.relationships > ul').append( this.relationships[relationshipName].element );
 	},
 	addAttribute : function() {
 		this.element.find('.attributes > ul').append( $('<li>').html('New Attribute').editable() );
 	}
 };
+
+var Relationship = function(entity, name) {
+	this.entity = entity;
+	this.element = $('<li>'+name+'</li>').editable();
+};
+
+Relationship.prototype = {
+
+};
+
+// On Bindings
+$('#modelArea').on('editableedit', '.relationships > ul > li', function( event, data ) {
+	var entity = $(this).closest('.entity').data('entity');
+	entity.relationships[data['newValue']] = entity.relationships[data['oldValue']];
+	delete entity.relationships[data['oldValue']];
+});
 
 })(jQuery);
