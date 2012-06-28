@@ -2,7 +2,7 @@
 
 (function ( $ ) {
 
-$.widget('kaosORM.editable', {
+$.widget('ui.editable', {
 	options : {
 		validate: null,
 		edit: null	
