@@ -61,11 +61,30 @@ Relationship.prototype = {
 
 };
 
-// On Bindings
+/*------------------------------------------
+| On (Live) Bindings
+|-----------------------------------------*/
+
+/*-------------------------------------------
+| Keep Entity Relationship Object and gui
+| in sync
+|------------------------------------------*/
 $('#modelArea').on('editableedit', '.relationships > ul > li', function( event, data ) {
 	var entity = $(this).closest('.entity').data('entity');
 	entity.relationships[data['newValue']] = entity.relationships[data['oldValue']];
 	delete entity.relationships[data['oldValue']];
+});
+
+/*-------------------------------------------
+| Keep relationship and Property Names Unique
+|------------------------------------------*/
+$('#modelArea').on('editablevalidate', '.attributes li, .relationships li', function( event, data ) {
+	var entity = $(this).closest('.entity').data('entity');
+	if (entity.attributes[data['newValue']] !== undefined ||
+			entity.relationships[data['newValue']] !== undefined) {
+		KaosORM.prototype.instance.dialogError('Attribute and relationship names must be unique within an entity');
+		return false;
+	}
 });
 
 })(jQuery);
