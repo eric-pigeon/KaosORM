@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html class="no-js">
 	<head>
 		<title>Kaos ORM</title>
 		<link rel="stylesheet" type="text/css" href="./css/editor.core.css">
@@ -7,6 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="./css/jquery.defaultAction.css">
 		<link rel="stylesheet" type="text/css" href="./css/jquery.editable.css">
 		<link rel="stylesheet" type="text/css" href="./css/jquery.ui.connectable.css">
+		<link rel="stylesheet" type="text/css" href="./css/jquery.ui.dialog.css">
 		<script src="./js/modernizr-2.5.3.js"></script>
 	</head>
 	<body>
@@ -15,8 +16,13 @@
 				Kaos ORM
 			</h1>
 		</header>
+		<section id="fileTabBar"></section>
 		<section id="mainContent" class="mainContent flex-box">
-			<section id="modelArea" class="modelArea flex-box"></section>
+			<section id="modelArea" class="modelArea flex-box">
+				<noscript>
+					Javascript must be enabled to use KaosORM.
+				</noscript>
+			</section>
 			<div id="rightSideBarSepperator" class="sideBarSepperator"></div>
 			<section id="rightSideBar" class="sideBar flex-box"></section>
 		</section>
@@ -34,6 +40,7 @@
 		<script src="./js/jquery.ui.editable.js"></script>
 
 		<script src="./js/kaosORM/core.js"></script>
+		<script src="./js/kaosORM/dataModel.js"></script>
 		<script src="./js/kaosORM/entity.js"></script>
 
 	</body>
