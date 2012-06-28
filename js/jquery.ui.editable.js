@@ -10,8 +10,10 @@ $.widget('kaosORM.editable', {
 	_create : function() {
 		this.element.addClass('editable');
 		var self = this;
-		this.element.bind('dblclick.editable', function() {
+		this.element.on('dblclick.editable', function(e) {
 			var $this = $(this);
+			if ($this.find('input').length != 0)
+				return;
 			self.oldValue = $this.html();
 			$this.html('');
 			self._createInput();
@@ -23,29 +25,25 @@ $.widget('kaosORM.editable', {
 	_createInput : function() {
 		var self = this;
 		var input = $('<input type="text">').val( this.oldValue ).addClass('editableInput');
-		input.css({
-			'text-align' : this.element.css('text-align')
-		}).keydown(function (e) {
-			if (e.keyCode == 13)
-				self._endEdit();
-			else if (e.keyCode == 27)
-				self._cancelEdit();
-		}).focusout(function (e) {
-			self._endEdit();
-		});
+		input.css({'text-align':this.element.css('text-align')})
+				.on('focusout keydown', function(e) {
+					e.stopImmediatePropagation();
+					if ( e.type == "fucosout" || e.keyCode == $.ui.keyCode.ENTER ) {
+						self._endEdit();
+					}
+					if ( e.keyCode == $.ui.keyCode.ESCAPE ) {
+						self._cancelEdit();
+					}
+				});
 		this.element.append( input );
 		input.focus();
 	},
 	_endEdit : function() {
 		var newValue = this.element.children('input').val();
-		if ( typeof this.options.validationFunction == 'function') {
-			if (this.options.validationFunction(newValue)) {
+		if (this._trigger('validate', null, {uiObject: this, newValue: newValue })) {
 				this._doEdit();
-			} else {
-				this._cancelEdit();
-			}
 		} else {
-			this._doEdit();
+			this._cancelEdit();
 		}
 	},
 	_doEdit : function() {
