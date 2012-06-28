@@ -1,0 +1,50 @@
+.ui-corner-all {
+	border-radius: 6px;
+}
+
+.ui-dialog-titlebar {
+	position: relative;
+	background-color: #E9E9E9;
+	padding: 0.4em 1em;
+}
+
+.ui-dialog-titlebar-close {
+	position: absolute;
+	right: 0.3em;
+	text-decoration: none;
+	font-family: arial rounded mt bold;
+}
+
+.ui-widget-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #000;
+	opacity: 0;
+}
+
+.ui-widget-overlay-fade-in {
+	-webkit-transition: opacity 0.5s ease-in;
+	opacity: 0.8;
+}
+
+.ui-dialog {
+	background-color: #D8D8D8;
+}
+
+.ui-dialog .ui-dialog-content {
+	padding: 0.5em 1em;
+}
+
+.ui-dialog-buttonpane {
+	padding: 0.4em;
+}
+
+.ui-dialog-buttonset {
+	display: -moz-box;
+	display: -webkit-box;
+	display: box;
+	-moz-box-pack: end;
+	-webkit-box-pack: end;
+	box-pack: end;
+}
