@@ -28,7 +28,7 @@ $.widget('ui.editable', {
 		input.css({'text-align':this.element.css('text-align')})
 				.on('focusout keydown', function(e) {
 					e.stopImmediatePropagation();
-					if ( e.type == "fucosout" || e.keyCode == $.ui.keyCode.ENTER ) {
+					if ( e.type == "focusout" || e.keyCode == $.ui.keyCode.ENTER ) {
 						self._endEdit();
 					}
 					if ( e.keyCode == $.ui.keyCode.ESCAPE ) {
