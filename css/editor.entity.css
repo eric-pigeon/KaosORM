@@ -7,6 +7,10 @@
 	z-index: 2;
 }
 
+.entity.selected .title {
+	background-color: #FE8;
+}
+
 .attributes {
 	border-bottom: 1px solid #444;
 }
