@@ -16,7 +16,10 @@
 				Kaos ORM
 			</h1>
 		</header>
-		<section id="fileTabBar"></section>
+		<section class="fileTabBar">
+			<ul id="fileTabList" class="filesList"></ul>
+			<button class="addTabButton" id="addTabButton">+</button>
+		</section>
 		<section id="mainContent" class="mainContent flex-box">
 			<section id="modelArea" class="modelArea flex-box">
 				<noscript>
@@ -24,7 +27,7 @@
 				</noscript>
 			</section>
 			<div id="rightSideBarSepperator" class="sideBarSepperator"></div>
-			<section id="rightSideBar" class="sideBar flex-box"></section>
+			<section id="rightSideBar" class="sideBar"></section>
 		</section>
 		<footer>
 			<button id="addEntityButton">Add Entity</button>
@@ -35,7 +38,13 @@
 		<script src="./js/jquery.transform2d.js"></script>
 		<script src="./js/jquery.defaultAction.js"></script>
 
-		<script src="./js/jquery-ui-1.8.20.js"></script>
+		<script src="./js/jquery-ui/jquery.ui.core.js"></script>
+		<script src="./js/jquery-ui/jquery.ui.widget.js"></script>
+		<script src="./js/jquery-ui/jquery.ui.mouse.js"></script>
+		<script src="./js/jquery-ui/jquery.ui.position.js"></script>
+		<script src="./js/jquery-ui/jquery.ui.dialog.js"></script>
+		<script src="./js/jquery-ui/jquery.ui.draggable.js"></script>
+
 		<script src="./js/jquery.ui.connectable.js"></script>
 		<script src="./js/jquery.ui.editable.js"></script>
 
