@@ -1,18 +1,20 @@
 (function($) {
 
 var Entity;
-KaosORM.Entity = Entity = function() {
+var Entity = KaosORM.Entity = function( name, dataModel ) {
+	this.name = name;
 	this.attributes = { };
 	this.relationships = { };
+	this.dataModel = dataModel; 
 	this._createHTML();
 	return this;
 }
 
-Entity.prototype = {
+Entity = KaosORM.Entity.prototype = {
 	_createHTML : function() {
 		var self = this;
 		this.element = $('<div class="entity">');
-		var title = $('<div class="title">Entity</div>').editable();
+		var title = $('<div class="title">'+this.name+'</div>').editable();
 		var attributes = $('<div class="attributes">Attributes<ul></ul></div>');
 		var relationships = $('<div class="relationships">Relationships<ul></ul></div>');
 		this.element.append(title).append(attributes).append(relationships);
@@ -49,6 +51,9 @@ Entity.prototype = {
 	},
 	addAttribute : function() {
 		this.element.find('.attributes > ul').append( $('<li>').html('New Attribute').editable() );
+	},
+	displayInRightSideBar : function() {
+
 	}
 };
 
@@ -64,6 +69,27 @@ Relationship.prototype = {
 /*------------------------------------------
 | On (Live) Bindings
 |-----------------------------------------*/
+
+/*------------------------------------------
+| Only allow alpha-numeric and underscore
+| for entity names
+|------------------------------------------*/
+// todo extends this to relationships and properties
+$('#modelArea').on('editablevalidate', '.entity .title', function( event, data ) {
+	if (data.newValue.match(/\W/)) {
+		KaosORM.dialogError('Entity names can only contain alpha-numerics and underscore.');
+		return false;
+	}
+	return true;
+});
+
+/*------------------------------------------
+| Keep Entity name in sync
+|------------------------------------------*/
+$('#modelArea').on('editableedit', '.entity .title', function( event, data ) {
+	var entity = $(this).closest('.entity').data('entity');
+	entity.name = data.newValue;
+});
 
 /*-------------------------------------------
 | Keep Entity Relationship Object and gui
@@ -82,7 +108,7 @@ $('#modelArea').on('editablevalidate', '.attributes li, .relationships li', func
 	var entity = $(this).closest('.entity').data('entity');
 	if (entity.attributes[data['newValue']] !== undefined ||
 			entity.relationships[data['newValue']] !== undefined) {
-		KaosORM.prototype.instance.dialogError('Attribute and relationship names must be unique within an entity');
+		KaosORM.dialogError('Attribute and relationship names must be unique within an entity');
 		return false;
 	}
 });
