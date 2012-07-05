@@ -34,7 +34,7 @@ var KaosORM;
 
 (function($) {
 	$(document).on('newSelection', function(e) {
-		$('#addPropertyButton').removeAttr('disabled');
+		$('#addAttributeButton').removeAttr('disabled');
 	});
 
 	$('#fileTabList').on('click', '.fileTab', function() {
@@ -65,15 +65,15 @@ $(function() {
 		KaosORM.activeDataModel.addEntity();
 	});
 
-	$('#addPropertyButton').click(function() {
+	$('#addAttributeButton').click(function() {
 		// props want to make a dialog here to prompt for type
-		KaosORM.activeDataModel.gui.currentSelectedObject.data('entity').addProperty();
+		KaosORM.activeDataModel.gui.currentSelectedObject.data('entity').addAttribute();
 	});
 
 	$('#addTabButton').click(function() {
 		new KaosORM.DataModel();
 	});
 
-	$('#addPropertyButton').attr('disabled', 'disabled');
+	$('#addAttributeButton').attr('disabled', 'disabled');
 
 });
