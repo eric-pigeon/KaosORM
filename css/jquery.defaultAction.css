@@ -7,7 +7,7 @@
 	}
 }
 
-#defaultAction {
+#defaultAction:enabled {
 	background: #07A3CB;
 	-webkit-animation: defaultAction 1.2s infinite;
 }
