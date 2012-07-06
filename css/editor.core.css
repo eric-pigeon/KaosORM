@@ -21,6 +21,10 @@ button:active {
 	background: #D8D8D8;
 }
 
+label {
+	margin-right: 0.7em;
+}
+
 .addTabButton {
 	padding: 0.3em 0.5em 0.3em 0.5em;
 }
